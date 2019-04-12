@@ -1,11 +1,13 @@
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
 import router from '@/router'
+import store from '@/store'
 
 const whiteList = ['/user/login', '/user/register', '/user/register-result'] // no redirect whitelist
 router.beforeEach((to, from, next) => {
     NProgress.start()
-    let token = false// 获取token
+    let token = store.getters.token// 获取token
+    console.log("token= ", store.getters.token)
     if (token) {
         if (to.path === '/user/login') {
             next({ path: '/' })

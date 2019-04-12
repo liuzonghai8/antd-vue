@@ -9,7 +9,7 @@ export default {
         {
             path: 'home',
             name: 'home',
-            component: () => import('@/views/test/Test')
+            component: () => import('@/views/Home')
         }
     ]
 }

@@ -50,7 +50,7 @@
   </div>
 </template>
 <script>
-import { loginByUserName } from '@/api/login'
+import { mapActions } from "vuex"
 export default {
   beforeCreate () {
     this.form = this.$form.createForm(this);
@@ -68,15 +68,15 @@ export default {
     }
   },
   methods: {
+    ...mapActions(["login", "logout"]),
     handleSubmit (e) {
       e.preventDefault()//阻止其它事情运行
       this.loginBtn = true
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
-          loginByUserName(values)
+          this.login(values)
             .then(resp => {
-              console.log("chen", resp)
               this.loginSuccess()
             })
             .catch(err => {
