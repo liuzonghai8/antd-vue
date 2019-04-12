@@ -5,6 +5,8 @@ import router from './router'
 import store from './store'
 //plugins
 import './plugins'
+// permission control
+import './permission'
 
 Vue.config.productionTip = false
 
