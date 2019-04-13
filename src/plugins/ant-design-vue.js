@@ -3,15 +3,16 @@ import {
     Alert, Avatar, Button, Badge, Checkbox, Divider,
     Drawer, Form, Dropdown,
     Pagination, Popover,
-    Menu,
+    Menu, Modal,
     Input, Icon, notification,
     Layout, List,
     Switch, Select,
-    Tooltip, Tag,
+    Tooltip, Tag, Tabs,
 } from 'ant-design-vue'
 import { LocaleProvider } from 'ant-design-vue'
 
 Vue.prototype.$notification = notification;
+Vue.prototype.$confirm = Modal.confirm;
 
 Vue.use(Alert)
 Vue.use(Avatar)
@@ -34,4 +35,4 @@ Vue.use(Select)
 Vue.use(Tooltip)
 Vue.use(Tag)
 Vue.use(Menu)
-Vue.component(Layout.Header.name, Layout.Header)
+Vue.use(Tabs)

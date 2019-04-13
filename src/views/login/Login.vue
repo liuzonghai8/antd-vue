@@ -51,6 +51,9 @@
 </template>
 <script>
 import { mapActions } from "vuex"
+import { ACCESS_TOKEN } from "@/store/mutation-types"
+import { timeFix } from "@/utils/util"
+import Vue from 'vue'
 export default {
   beforeCreate () {
     this.form = this.$form.createForm(this);
@@ -67,15 +70,21 @@ export default {
       }
     }
   },
+  //
+  created () {
+    //页面创建的时候移除token
+    Vue.ls.remove(ACCESS_TOKEN)
+  },
+
   methods: {
-    ...mapActions(["login", "logout"]),
+    ...mapActions(["Login", "logout"]),
     handleSubmit (e) {
       e.preventDefault()//阻止其它事情运行
-      this.loginBtn = true
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
-          this.login(values)
+          this.loginBtn = true
+          this.Login(values)
             .then(resp => {
               this.loginSuccess()
             })
@@ -87,16 +96,19 @@ export default {
     },
     loginSuccess () {
       this.loginBtn = false
-      console.log("---------loginSuccess-------")
       this.$router.push({ name: 'home' })
       this.$notification.success({
         message: '登陆成功',
-        description: '欢迎回来',
+        description: `${timeFix()},欢迎回来`,
       })
     },
     loginFailed (err) {
+      this.$notification['error']({
+        message: '登录失败',
+        description: ((err.response || {}).data || {}).message || err.message || "请求出现错误，请稍后再试",
+        duration: 4,
+      })
       this.loginBtn = false
-      console.log(err)
     }
   }
 

@@ -22,7 +22,7 @@
             <span>账户设置</span>
           </router-link>
         </a-menu-item>
-       <!-- <a-menu-item key="2" disabled>
+        <!-- <a-menu-item key="2" disabled>
           <a-icon type="setting"/>
           <span>测试</span>
         </a-menu-item>
@@ -38,56 +38,56 @@
     <span class="action">
       <a class="logout_title" href="javascript:;" @click="handleLogout">
         <a-icon type="logout"/>
-        <span> 退出登录</span>
+        <span>退出登录</span>
       </a>
     </span>
   </div>
 </template>
 
 <script>
-  import HeaderNotice from './HeaderNotice'
-  import { mapActions, mapGetters } from 'vuex'
-  import {imgView} from '@/api/api'
+import HeaderNotice from './HeaderNotice'
+import { mapActions, mapGetters } from 'vuex'
+import { imgView } from '@/api/api'
 
-  export default {
-    name: "UserMenu",
-    components: {
-      HeaderNotice
+export default {
+  name: "UserMenu",
+  components: {
+    HeaderNotice
+  },
+  methods: {
+    ...mapActions(["Logout"]),
+    ...mapGetters(["nickname", "avatar"]),
+    getAvatar () {
+      console.log('url = ' + imgView + this.avatar())
+      return imgView + this.avatar()
     },
-    methods: {
-      ...mapActions(["Logout"]),
-      ...mapGetters(["nickname", "avatar"]),
-      getAvatar(){
-        console.log('url = '+ imgView+this.avatar())
-        return imgView+this.avatar()
-      },
-      handleLogout() {
-        const that = this
+    handleLogout () {
+      const that = this
 
-        this.$confirm({
-          title: '提示',
-          content: '真的要注销登录吗 ?',
-          onOk() {
-            return that.Logout({}).then(() => {
-              window.location.reload()
-            }).catch(err => {
-              that.$message.error({
-                title: '错误',
-                description: err.message
-              })
+      this.$confirm({
+        title: '提示',
+        content: '真的要注销登录吗 ?',
+        onOk () {
+          return that.Logout({}).then(() => {
+            window.location.reload()
+          }).catch(err => {
+            that.$message.error({
+              title: '错误',
+              description: err.message
             })
-          },
-          onCancel() {
-          },
-        });
-      },
-    }
+          })
+        },
+        onCancel () {
+        },
+      });
+    },
   }
+}
 </script>
 
 <style scoped>
-  .logout_title{
-    color: rgba(0, 0, 0, 0.65);
-    text-decoration:none;
-  }
+.logout_title {
+  color: rgba(0, 0, 0, 0.65);
+  text-decoration: none;
+}
 </style>
