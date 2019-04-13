@@ -11,7 +11,7 @@
     <div class="copyright">
       Copyright
       <a-icon type="copyright"/>2019
-      <span>JEECG开源社区 出品</span>
+      <span>GXPOST 出品</span>
     </div>
   </div>
 </template>

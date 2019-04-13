@@ -6,7 +6,7 @@ import store from '@/store'
 const whiteList = ['/user/login', '/user/register', '/user/register-result'] // no redirect whitelist
 router.beforeEach((to, from, next) => {
     NProgress.start()
-    let token = store.getters.token// 获取token
+    const token = store.getters.token// 获取token
     console.log("token= ", store.getters.token)
     if (token) {
         if (to.path === '/user/login') {
