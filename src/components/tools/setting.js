@@ -20,6 +20,9 @@ const colorList = [
     key: '极光绿', color: '#52C41A',
   },
   {
+    key: '邮政绿', color: '#20985C',
+  },
+  {
     key: '拂晓蓝（默认）', color: '#1890FF',
   },
   {
