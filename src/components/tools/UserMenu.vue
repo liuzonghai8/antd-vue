@@ -22,7 +22,7 @@
             <span>账户设置</span>
           </router-link>
         </a-menu-item>
-        <!-- <a-menu-item key="2" disabled>
+        <a-menu-item key="2">
           <a-icon type="setting"/>
           <span>测试</span>
         </a-menu-item>
@@ -32,7 +32,7 @@
             <a-icon type="logout"/>
             <span>退出登录</span>
           </a>
-        </a-menu-item>-->
+        </a-menu-item>
       </a-menu>
     </a-dropdown>
     <span class="action">

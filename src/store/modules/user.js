@@ -19,13 +19,13 @@ export default {
             return new Promise((resolve, reject) => {
                 loginByUserName(userInfo)
                     .then(resp => {
-                        console.log("-------resp-------", resp.status)
+                        console.log("-------resp-------", resp)
                         if (resp.status === 200) {
                             ///设置token ,cookie, userinfo 相关信息
-                            Vue.ls.set(ACCESS_TOKEN, 'result.token', 7 * 24 * 60 * 60 * 1000)
+                            Vue.ls.set(ACCESS_TOKEN, resp.data.records, 7 * 24 * 60 * 60 * 1000)
                             // Vue.ls.set(USER_NAME, userInfo.username, 7 * 24 * 60 * 60 * 1000)
                             // Vue.ls.set(USER_INFO, userInfo, 7 * 24 * 60 * 60 * 1000)
-                            commit('SET_TOKEN', 'result.token')
+                            commit('SET_TOKEN', resp.data.records)
                             // TODO 
                             resolve()
                         } else {
