@@ -10,18 +10,13 @@ export default {
             path: 'home',
             name: 'home',
             component: () => import('@/views/Home')
-        }
-    ],
-    path: '/sys',
-    component: TabLayout,
-    redirect: '/user',
-    hidden: true,
-    children: [
+        },
         {
-            path: 'user',
+            path: 'sys/user',
             name: 'user',
             component: () => import('@/views/system/user/User')
-        }
-    ],
+        },
+
+    ]
 
 }

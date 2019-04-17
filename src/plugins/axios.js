@@ -7,8 +7,8 @@ import axios from "axios";
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.baseURL = 'http://api.sweet.com/api'
-//axios.defaults.baseURL = 'http://192.168.1.119:8080/api'
+//axios.defaults.baseURL = 'http://api.sweet.com/api'
+axios.defaults.baseURL = 'http://192.168.1.119:8080/api'
 let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
   // timeout: 60 * 1000, // Timeout

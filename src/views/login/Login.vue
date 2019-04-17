@@ -82,8 +82,9 @@ export default {
       e.preventDefault()//阻止其它事情运行
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
+          console.log('form的值为: ', values);
           this.loginBtn = true
+          //调用stroe中的login
           this.Login(values)
             .then(resp => {
               this.loginSuccess()
