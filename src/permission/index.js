@@ -25,19 +25,20 @@ router.beforeEach((to, from, next) => {
             console.log("-----else ------")
             console.log("to: ",to)
             console.log("from:",from)
+            next()
             //生成页面菜单
             //添加可访问的路由
             //router.addRoutes(store.getters.addRouters)
-            router.addRouters(asyncRouter)
-            const redirect = decodeURIComponent(from.query.redirect || to.path)
-            if (to.path === redirect) {
-                // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
-               console.log("to-path:",to.path)
-                next({ ...to, replace: true })
-            } else {
-                // 跳转到目的路由
-                next({ path: redirect })
-            }
+           // router.addRouters(asyncRouter)
+           //  const redirect = decodeURIComponent(from.query.redirect || to.path)
+           //  if (to.path === redirect) {
+           //      // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+           //     console.log("to-path:",to.path)
+           //      next({ ...to, replace: true })
+           //  } else {
+           //      // 跳转到目的路由
+           //      next({ path: redirect })
+           //  }
         }
     } else {
         if (whiteList.indexOf(to.path) !== -1) {
