@@ -80,7 +80,7 @@ export default {
     ...mapActions(["Login", "logout"]),
     handleSubmit (e) {
       e.preventDefault()//阻止其它事情运行
-      this.form.validateFields((err, values) => {
+      this.form.validateFields( { force: true },(err, values) => {
         if (!err) {
           console.log('form的值为: ', values);
           this.loginBtn = true
