@@ -7,14 +7,18 @@ import { ACCESS_TOKEN } from "@/store/mutation-types"
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+ axios.defaults.baseURL = 'http://192.168.1.119:8080/api'
+ //axios.defaults.headers.common['Authorization'] = ACCESS_TOKEN;
+ //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 //axios.defaults.baseURL = 'http://api.sweet.com/api'
-axios.defaults.baseURL = 'http://192.168.1.119:8080/api'
+
+axios.defaults.withCredentials =true
+
 let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
   // timeout: 60 * 1000, // Timeout
-  // withCredentials: true, // Check cross-site Access-Control
+ // withCredentials: true, // Check cross-site Access-Control
   timeout: 60 * 1000,
   api: '${baseURL}/api'
 };
