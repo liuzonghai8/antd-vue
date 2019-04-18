@@ -96,6 +96,7 @@ export default {
   data () {
     return {
         dataSource:[],
+
         pagination: {
           //  current: 1,
           //  pageSize: 10,
@@ -125,6 +126,7 @@ export default {
     },
   methods: {
       loadData () {
+          this.loading = true
         fetchAction({
             key: this.search, // 搜索条件
             page: this.pagination.current, // 当前页
@@ -134,7 +136,9 @@ export default {
       }).then(resp =>{
             console.log("dataSource:",resp)
            this.dataSource = resp.data.records
-            this.pagination.total= resp.total
+            this.pagination.total= resp.data.total
+            console.log("total: ",this.pagination.total)
+            this.loading = false
 
       })
     }
