@@ -7,6 +7,10 @@ import store from './store'
 import './plugins'
 // permission control
 import './permission'
+
+//import Cookies from 'js-cookie'
+
+
 //vue-ls 浏览器存储
 import Storage from 'vue-ls'
 import config from './defaultSettings'
@@ -41,7 +45,7 @@ new Vue({
     store.commit('TOGGLE_FIXED_HEADER_HIDDEN', Vue.ls.get(DEFAULT_FIXED_HEADER_HIDDEN, config.autoHideHeader))
     store.commit('TOGGLE_WEAK', Vue.ls.get(DEFAULT_COLOR_WEAK, config.colorWeak))
     store.commit('TOGGLE_COLOR', Vue.ls.get(DEFAULT_COLOR, config.primaryColor))
-    store.commit('SET_TOKEN', Vue.ls.get(ACCESS_TOKEN))
+    //store.commit('SET_TOKEN', Vue.ls.get(ACCESS_TOKEN))
   },
   render: h => h(App)
 }).$mount('#app')

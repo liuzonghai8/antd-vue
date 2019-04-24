@@ -11,6 +11,7 @@
     "@babel/polyfill": "^7.4.3",
     "ant-design-vue": "^1.2.4",
     "core-js": "^2.6.5",
+    "js-cookie": "^2.2.0",
     "nprogress": "^0.2.0",
     "vue": "^2.6.6",
     "vue-ls": "^3.2.1",

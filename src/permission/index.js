@@ -6,6 +6,9 @@ import store from '@/store'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import asyncRouter from '@/router/asyncRouter'
 
+import { getToken } from '@/utils/auth' // get token from cookie
+
+
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/user/login'] // no redirect whitelist
@@ -13,8 +16,9 @@ const whiteList = ['/user/login'] // no redirect whitelist
 router.beforeEach((to, from, next) => {
     NProgress.start()
     //判断是否已经登录
-    console.log("token:", Vue.ls.get(ACCESS_TOKEN))
-    if (Vue.ls.get(ACCESS_TOKEN)) {
+    console.log("cookie get token:",getToken())
+    //console.log("token:", Vue.ls.get(ACCESS_TOKEN))
+    if (getToken()) {
         // has token
         if (to.path === '/user/login') {
             //转到首页

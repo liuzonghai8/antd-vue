@@ -54,6 +54,9 @@ import { mapActions } from "vuex"
 import { ACCESS_TOKEN } from "@/store/mutation-types"
 import { timeFix } from "@/utils/util"
 import Vue from 'vue'
+import getToken from '@/utils/auth'
+
+
 export default {
   beforeCreate () {
     this.form = this.$form.createForm(this);

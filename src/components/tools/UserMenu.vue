@@ -22,10 +22,6 @@
             <span>账户设置</span>
           </router-link>
         </a-menu-item>
-        <a-menu-item key="2">
-          <a-icon type="setting"/>
-          <span>测试</span>
-        </a-menu-item>
         <a-menu-divider/>
         <a-menu-item key="3">
           <a href="javascript:;" @click="handleLogout">
@@ -34,13 +30,14 @@
           </a>
         </a-menu-item>
       </a-menu>
+      <span></span>
     </a-dropdown>
-    <span class="action">
+   <!-- <span class="action">
       <a class="logout_title" href="javascript:;" @click="handleLogout">
         <a-icon type="logout"/>
         <span>退出登录</span>
       </a>
-    </span>
+    </span>-->
   </div>
 </template>
 

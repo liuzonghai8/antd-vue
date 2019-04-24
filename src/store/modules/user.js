@@ -3,19 +3,22 @@ import { loginByUserName, logoutServe } from '@/api/login'
 import { ACCESS_TOKEN, USER_NAME, USER_INFO } from "@/store/mutation-types"
 import { welcome } from "@/utils/util"
 import Vue from 'vue'
+import { getToken, setToken, removeToken } from '@/utils/auth'
+
 
 export default {
     state: {
-        token: '',
+        token: getToken(),
         username: '',
-        realname: '',
+        realname: '真名',
         welcome: '',
-        avatar: '',
+        avatar: './assets/logo.png',
         permissionList: [],
         info: {}
     },
     mutations: {
         SET_TOKEN: set('token'),
+        SET_REALNAME: set('realname'),
         SET_AVATAR:set('avatar'),
         SET_PERMISSIONLIST: set('permissionList'),
         SET_INFO: set('info'),
@@ -35,14 +38,14 @@ export default {
                         console.log("-------store user 返回resp-------", resp)
                         if (resp.code === 0) {
                             const result = resp
-                           // const userInfo = result.userInfo
-                            Vue.ls.set(ACCESS_TOKEN, resp.data, 7 * 24 * 60 * 60 * 1000)
-                           // Vue.ls.set(USER_NAME, userInfo.username, 7 * 24 * 60 * 60 * 1000)
-                           // Vue.ls.set(USER_INFO, userInfo, 7 * 24 * 60 * 60 * 1000)
-                            commit('SET_TOKEN', result.token)
-                            commit('SET_INFO', userInfo)
-                            commit('SET_NAME', { username: userInfo.username,realname: userInfo.realname, welcome: welcome() })
-                            commit('SET_AVATAR', userInfo.avatar)
+                            console.log("resp:",resp)
+                            //验证用户名和密码成功后，设置token
+                            commit('SET_TOKEN', result.data)
+                            console.log("token is: ,",result.data)
+                            setToken(resp.data)
+                            // commit('SET_INFO', userInfo)
+                            // commit('SET_NAME', { username: userInfo.username,realname: userInfo.realname, welcome: welcome() })
+                            // commit('SET_AVATAR', userInfo.avatar)
 
                             resolve()
                         } else {
@@ -74,9 +77,9 @@ export default {
             return new Promise((resolve) => {
                 commit('SET_TOKEN', '')
                 commit('SET_PERMISSIONLIST', [])
-                Vue.ls.remove(ACCESS_TOKEN)
-
-                logoutServe(state.token).then(() => {
+                removeToken()
+                logoutServe(state.token).then((resp) => {
+                    console.log("-----logout:-----",resp)
                     resolve()
                 }).catch(() => {
                     resolve()
