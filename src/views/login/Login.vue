@@ -54,6 +54,9 @@ import { mapActions } from "vuex"
 import { ACCESS_TOKEN } from "@/store/mutation-types"
 import { timeFix } from "@/utils/util"
 import Vue from 'vue'
+import getToken from '@/utils/auth'
+
+
 export default {
   beforeCreate () {
     this.form = this.$form.createForm(this);
@@ -80,10 +83,11 @@ export default {
     ...mapActions(["Login", "logout"]),
     handleSubmit (e) {
       e.preventDefault()//阻止其它事情运行
-      this.form.validateFields((err, values) => {
+      this.form.validateFields( { force: true },(err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
+          console.log('form的值为: ', values);
           this.loginBtn = true
+          //调用stroe中的login
           this.Login(values)
             .then(resp => {
               this.loginSuccess()
