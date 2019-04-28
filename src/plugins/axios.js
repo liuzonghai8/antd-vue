@@ -7,14 +7,15 @@ import { ACCESS_TOKEN } from "@/store/mutation-types"
 
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
+
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 
  //axios.defaults.baseURL = 'http://192.168.1.119:8080/api'
  //axios.defaults.headers.common['Authorization'] = ACCESS_TOKEN;
  //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.baseURL = 'http://api.sweet.com/api'
 
+axios.defaults.baseURL = 'http://api.sweet.com/api'
 axios.defaults.withCredentials =true
 
 let config = {
@@ -30,8 +31,7 @@ const _axios = axios.create(config);
 const err = (error) => {
   if (error.response) {
     let data = error.response.data
-    //const token = Vue.ls.get(ACCESS_TOKEN)
-    const token = getToken()
+    const token = Vue.ls.get(ACCESS_TOKEN)
     console.log("------异常响应------", token)
     console.log("------异常响应------", error.response.status)
     switch (error.response.status) {
@@ -88,14 +88,13 @@ const err = (error) => {
 };
 
 
-//request 拦截
+//request 请求拦截
 _axios.interceptors.request.use(config => {
-  console.log("----------请求login----------")
-  //const token = Vue.ls.get(ACCESS_TOKEN)
-  const token = getToken()
+  console.log("----------请求拦截----------")
+  const token = Vue.ls.get(ACCESS_TOKEN)
   if (token) {
-    console.log("----- 携带的token {} -----",token)
-   config.headers['ACCESS_TOKEN'] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
+    console.log("----- 请求携带的token {} -----",token)
+   // config.headers['X-Access-Token'] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
   }
   return config
 }, (error) => {

@@ -16,9 +16,9 @@ const whiteList = ['/user/login'] // no redirect whitelist
 router.beforeEach((to, from, next) => {
     NProgress.start()
     //判断是否已经登录
-    console.log("cookie get token:",getToken())
-    //console.log("token:", Vue.ls.get(ACCESS_TOKEN))
-    if (getToken()) {
+    console.log("permission判断是否已经登录 token:", Vue.ls.get(ACCESS_TOKEN))
+    const token = Vue.ls.get(ACCESS_TOKEN)
+    if (token) {
         // has token
         if (to.path === '/user/login') {
             //转到首页
@@ -30,8 +30,11 @@ router.beforeEach((to, from, next) => {
             console.log("to: ",to)
             console.log("from:",from)
             next()
-            //生成页面菜单
-            //添加可访问的路由
+            //1.获取用户个人信息
+            //2.生成页面菜单
+            //3.添加可访问的路由
+            //4.
+
             //router.addRoutes(store.getters.addRouters)
            // router.addRouters(asyncRouter)
            //  const redirect = decodeURIComponent(from.query.redirect || to.path)
